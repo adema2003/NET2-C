@@ -21,17 +21,26 @@ int main( void ) {
     // ptra2 = &array2;
 
     maxArrays(array1, array2, array3);
-    printf("Dit is array 3: %.1f \n", array3);
+    printf("Dit is array 3: %.1lf \n", *array3);
     return 0;
 }
 
 
 void maxArrays(float *ar1, float *ar2, float *array3) {
-     int n;
+     int n = 4;
   for (int i = 1; i < n; ++i) {
     if (ar1[0] < ar1[i]) {
       ar1[0] = ar1[i];
     }
   }
-    *array3 = ar1[0];
+  for (int i = 1; i < n; ++i) {
+    if (ar2[0] < ar2[i]) {
+      ar2[0] = ar2[i];
+    }
+  }
+  if (ar1[0] > ar2[0]) {
+      *array3 = ar1[0];
+  }else {
+      *array3 = ar2[0];
+  }
 }
