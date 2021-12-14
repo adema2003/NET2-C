@@ -1,10 +1,10 @@
 #include <stdio.h>
+#include <string>
+
 int main() {
-    char tekst, tekstnieuw;
+    char tekst[100];
+    char tekstnieuw;
     int length = 0;
-    int i;
-    char *ascii;
-    int tekstascii[5];
 
     FILE *fptr1, *fptr2 ;
 		fptr1 = fopen ( "test.txt", "r") ;
@@ -16,21 +16,16 @@ int main() {
 			printf ("File 'mydata' did not open.\n") ;
 		}
 
-   tekstnieuw = fgetc(fptr1);
     while (tekstnieuw != EOF)
     {
         length++;
-        fputc(tekstnieuw, fptr2);
         tekstnieuw = fgetc(fptr1);
+        fputc(tekstnieuw+1, fptr2);
     }
-    *ascii = tekstnieuw;
-    for (char *i = ascii; *i; ++i) {
-        tekstascii[0] = tekstascii[0] + *i;
-    }
-    printf("%d", tekstacii[0])
-    printf("\nDe tekst bestaat uit %d", length);
-    printf(" karakters\n");
+    printf("Lengte is : %d\n", length);
+
     fclose(fptr1);
+    fclose(fptr2);
 
     return 0;
 }
