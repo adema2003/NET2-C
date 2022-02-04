@@ -1,0 +1,32 @@
+---
+- name: Installatie logging tool
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Packages
+      apt: 
+        name: rsyslog
+        state: latest
+
+    - name: Copy rsyslog conf file
+      copy:
+        src: rsyslog.conf
+        dest: /etc/rsyslog.conf
+        owner: thomas
+        group: sudo
+        mode: '0644'
+
+    - name: Copy rsyslog apache log conf file
+      copy:
+        src: 02-apache2.conf
+        dest: /etc/rsyslog.d/02-apache2.conf
+        owner: thomas
+        group: sudo
+        mode: '0644'
+
+    - name: Start service rsyslog
+      service:
+        name: rsyslog
+        state: started
+
+
